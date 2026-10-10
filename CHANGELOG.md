@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/Axeloooo/autograd-from-scratch/compare/v1.1.0...v1.2.0) (2026-10-10)
+
+
+### Features
+
+* add graph drawing and iterative backward ([#9](https://github.com/Axeloooo/autograd-from-scratch/issues/9)) ([c7bec16](https://github.com/Axeloooo/autograd-from-scratch/commit/c7bec16a3938765da7a804ac4ef6e1a2fc10d482))
+
 # [1.1.0](https://github.com/Axeloooo/autograd-from-scratch/compare/v1.0.0...v1.1.0) (2026-10-10)
 
 
