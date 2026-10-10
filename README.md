@@ -21,6 +21,7 @@ pip install -e ".[dev]"
 | Backpropagation over a topological sort | `Value.backward`                                              |
 | Neuron, layer, multi-layer perceptron   | `Neuron`, `Layer`, `MLP` in `nn.py`                           |
 | Training loop with gradient descent     | `tests/test_nn.py::test_mlp_learns_tiny_dataset`              |
+| Drawing the computation graph           | `to_dot`, `trace` in `graph.py` (Graphviz DOT text)           |
 
 ## Example
 
@@ -48,6 +49,15 @@ for _ in range(50):
     loss.backward()
     for p in mlp.parameters():
         p.data -= 0.05 * p.grad
+```
+
+Draw the graph of any expression. `to_dot` returns Graphviz DOT text, so paste it into any viewer or
+run `dot -Tsvg`:
+
+```python
+from autograd_from_scratch import to_dot
+
+print(to_dot(loss))
 ```
 
 ## Verifying gradients
