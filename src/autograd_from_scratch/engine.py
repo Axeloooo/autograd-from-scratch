@@ -125,16 +125,17 @@ class Value:
         """Backpropagate from this node: topologically sort, then apply the chain rule."""
         topo: list[Value] = []
         visited: set[Value] = set()
+        # Iterative depth-first search, so a very deep graph cannot hit the recursion limit.
+        stack: list[tuple[Value, bool]] = [(self, False)]
+        while stack:
+            node, expanded = stack.pop()
+            if expanded:
+                topo.append(node)
+            elif node not in visited:
+                visited.add(node)
+                stack.append((node, True))
+                stack.extend((child, False) for child in node._prev)
 
-        def build(node: Value) -> None:
-            if node in visited:
-                return
-            visited.add(node)
-            for child in node._prev:
-                build(child)
-            topo.append(node)
-
-        build(self)
         self.grad = 1.0
         for node in reversed(topo):
             node._backward()

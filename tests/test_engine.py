@@ -65,3 +65,13 @@ def test_gradients_match_finite_differences(
 def test_pow_rejects_value_exponent() -> None:
     with pytest.raises(TypeError):
         Value(2.0) ** Value(2.0)  # type: ignore[operator]
+
+
+def test_backward_on_a_deep_graph_does_not_overflow_the_stack() -> None:
+    x = Value(1.0)
+    out = x
+    for _ in range(5000):
+        out = out + x
+    out.backward()
+    assert out.data == 5001.0
+    assert x.grad == 5001.0
