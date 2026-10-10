@@ -62,7 +62,8 @@ pytest -q
 ## Development
 
 See `CLAUDE.md` for commands and conventions. Commits follow Conventional Commits; work lands on
-`devel` through pull requests and releases go from `devel` to `main`.
+`devel` through squash-merged pull requests and releases go to `main` from a `release/YYYY-MM-DD`
+branch through a squash-merged pull request.
 
 ## License
 
