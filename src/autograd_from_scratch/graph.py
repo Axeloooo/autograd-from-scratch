@@ -23,13 +23,18 @@ def trace(root: Value) -> tuple[list[Value], list[tuple[Value, Value]]]:
     return nodes, edges
 
 
+def _escape(text: str) -> str:
+    """Backslash the characters that are syntax inside a record label."""
+    return "".join("\\" + ch if ch in '\\"{}|<>' else ch for ch in text)
+
+
 def to_dot(root: Value) -> str:
     """DOT source for the graph, left to right; paste it into any Graphviz viewer."""
     nodes, edges = trace(root)
     ids = {node: f"n{i}" for i, node in enumerate(nodes)}
     lines = ["digraph {", "  rankdir=LR;"]
     for node in nodes:
-        label = f"{node.label} | " if node.label else ""
+        label = f"{_escape(node.label)} | " if node.label else ""
         text = f"{label}data {node.data:.4f} | grad {node.grad:.4f}"
         lines.append(f'  {ids[node]} [label="{{ {text} }}", shape=record];')
         if node._op:

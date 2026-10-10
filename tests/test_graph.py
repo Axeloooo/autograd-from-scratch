@@ -20,3 +20,8 @@ def test_to_dot_has_labels_ops_and_gradients() -> None:
     assert "a | data 2.0000 | grad -3.0000" in dot
     assert "c | data -6.0000 | grad 1.0000" in dot
     assert 'label="*"' in dot
+
+
+def test_to_dot_escapes_record_syntax_in_labels() -> None:
+    x = Value(1.0, label='x|{"y"}<z>')
+    assert 'x\\|\\{\\"y\\"\\}\\<z\\> | data' in to_dot(x)
