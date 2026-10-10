@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Axeloooo/autograd-from-scratch/compare/v1.0.0...v1.1.0) (2026-10-10)
+
+
+### Features
+
+* add scalar autograd engine and MLP from the micrograd lecture ([#1](https://github.com/Axeloooo/autograd-from-scratch/issues/1)) ([523a7e0](https://github.com/Axeloooo/autograd-from-scratch/commit/523a7e067e84ca406c87eaee0fb7d30b2575558c))
+
 # 1.0.0 (2026-10-10)
 
 
